@@ -14,11 +14,11 @@ import entities from './typeorm';
         type: 'postgres',
         host: configService.get('DB_HOST'),
         port: configService.get<number>('DB_PORT'),
-        username: 'postgres',
-        password: '1234',
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         entities: entities,
-        synchronize: true,
+        synchronize: true, //Actualiza la BD en real time no es recomendado para producción
       }),
       inject: [ConfigService],
     }),
@@ -28,4 +28,8 @@ import entities from './typeorm';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly configService: ConfigService) {
+
+  }
+}
