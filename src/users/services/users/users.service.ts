@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/typeorm';
+import { User } from 'src/Entities';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
 
@@ -19,8 +19,8 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  findUsersById(id: number) {
-    return this.userRepository.findOneBy({id:id});
+  findUsersById(userId: number) {
+    return this.userRepository.findOneBy({userId:userId});
   }
 
   findUsersByUsername(username: string) {

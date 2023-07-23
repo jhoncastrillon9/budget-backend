@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Customer } from 'src/typeorm';
+import { Customer } from 'src/Entities';
 import { Repository } from 'typeorm';
 import { CreateCustomerDto } from 'src/customers/dtos/CreateCustomer.dto';
 
@@ -21,6 +21,6 @@ export class CustomersService {
   }
 
   findCustomersById(id: number) {
-    return this.customerRepository.findOneBy({id:id});
+    return this.customerRepository.findOneBy({customerId:id});
   }
 }

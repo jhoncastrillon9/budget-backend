@@ -4,9 +4,9 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class User {
   @PrimaryGeneratedColumn({
     type: 'bigint',
-    name: 'user_id',
+    name: 'userId',
   })
-  id: number;
+  userId: number;
 
   @Column({
     nullable: false,
@@ -15,7 +15,7 @@ export class User {
   username: string;
 
   @Column({
-    name: 'email_address',
+    name: 'email',
     nullable: false,
     default: '',
   })
@@ -26,4 +26,10 @@ export class User {
     default: '',
   })
   password: string;
+
+  @Column({
+    nullable: false,
+    default: false,
+  })
+  isAdmin: boolean;
 }
