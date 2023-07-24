@@ -1,8 +1,14 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Configuration {
-  @PrimaryColumn()
+export class Configuration {  
+  @PrimaryGeneratedColumn({
+    type: 'bigint',
+    name: 'companyId',
+  })
+  companyId: number;
+  
+  @Column()  
   companyName: string;
 
   @Column()
