@@ -4,6 +4,8 @@ import { CustomersModule } from './customers/customers.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { ConfigurationsModule } from './configurations/configurations.module';
+import { BudgetsModule } from './budgets/budgets.module';
 import entities from './Entities';
 
 @Module({
@@ -26,6 +28,8 @@ import entities from './Entities';
     UsersModule,
     CustomersModule,
     AuthModule,
+    ConfigurationsModule,
+    BudgetsModule,
   ],
   controllers: [],
   providers: [],

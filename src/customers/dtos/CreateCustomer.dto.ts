@@ -5,7 +5,11 @@ export class CreateCustomerDto {
     @MinLength(3)
     username: string;
 
-    @IsNotEmpty()
     @IsEmail()
     email: string;
+
+    typeDocument: string;
+    document: string;
+    cellphone: string;
+    address: string;
 }
