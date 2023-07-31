@@ -7,10 +7,12 @@ import { UsersService } from 'src/users/services/users/users.service';
 export class AuthService {
     constructor(private usersService: UsersService, private jwtTokenService: JwtService){}
 
-    async validateUserCredentials(username: string, password: string): Promise<any> {
-        const user = await this.usersService.findUsersByUsername(username);
-        
-        if (user && user.password === password) {
+    async validateUserCredentials(email: string, password: string): Promise<any> {
+        const user = await this.usersService.findUsersByEmail(email);
+        console.log(user.email.toLowerCase())
+        console.log(email.toLowerCase())
+
+        if (user && user.password === password && user.email.toLowerCase()==email.toLowerCase()) {
             const {password, ...result} = user;            
             return result;
         }
@@ -18,7 +20,7 @@ export class AuthService {
     }
 
     async loginWithCredentials(user: any) {
-        const payload = { username: user.username, sub: user.id };     
+        const payload = { username: user.username, sub: user.id, email: user.email, isAdmin: user.isAdmin};     
         return {
             access_token: this.jwtTokenService.sign(payload),
         };

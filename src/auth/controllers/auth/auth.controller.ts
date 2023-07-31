@@ -11,8 +11,8 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() logintDto: LoginDto) {
-    const { username, password } = logintDto;
-    const user = await this.authService.validateUserCredentials(username, password);
+    const { email, password } = logintDto;
+    const user = await this.authService.validateUserCredentials(email, password);
     
     if (!user) {
       throw new UnauthorizedException();
