@@ -9,8 +9,6 @@ export class AuthService {
 
     async validateUserCredentials(email: string, password: string): Promise<any> {
         const user = await this.usersService.findUsersByEmail(email);
-        console.log(user.email.toLowerCase())
-        console.log(email.toLowerCase())
 
         if (user && user.password === password && user.email.toLowerCase()==email.toLowerCase()) {
             const {password, ...result} = user;            
@@ -20,9 +18,16 @@ export class AuthService {
     }
 
     async loginWithCredentials(user: any) {
-        const payload = { username: user.username, sub: user.id, email: user.email, isAdmin: user.isAdmin};     
+        const payload = { 
+            username: user.username, 
+            sub: user.userid, 
+            email: user.email, 
+            isAdmin: user.isAdmin,
+            picture: 'assets/images/kitten-dark-photo.png'
+        };     
         return {
-            access_token: this.jwtTokenService.sign(payload),
+            data:{token: this.jwtTokenService.sign(payload)}
+            
         };
     }
 }

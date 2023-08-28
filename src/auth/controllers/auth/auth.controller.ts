@@ -1,9 +1,9 @@
-import { Controller, Get,Body, Post, Request, UseGuards, UnauthorizedException } from '@nestjs/common';
+import { Controller, Get,Body, Post, Request, UseGuards, UnauthorizedException, Delete } from '@nestjs/common';
 import { LoginDto } from 'src/auth/dtos/login.dto';
 import { AuthService } from 'src/auth/services/auth/auth.service';
 
 
-@Controller('auth')
+@Controller('api/auth')
 export class AuthController {
 
   constructor(private authService: AuthService){}
@@ -20,4 +20,14 @@ export class AuthController {
     return await this.authService.loginWithCredentials(user);
  
   }
+
+
+  @Delete('logout')
+  async logout(@Body() logintDto: LoginDto) {
+    
+    return true;
+ 
+  }
+
+
 }
